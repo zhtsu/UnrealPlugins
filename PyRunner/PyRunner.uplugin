@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "PyRunner",
+	"Description": "Manage and execute python scripts",
+	"Category": "Other",
+	"CreatedBy": "zhtsu@qq.com",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "PyRunner",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
