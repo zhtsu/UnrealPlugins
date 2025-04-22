@@ -19,5 +19,15 @@ public:
 	virtual void RegisterCommands() override;
 
 public:
-	TSharedPtr< FUICommandInfo > PluginAction;
+	TSharedPtr< FUICommandInfo > Script_01;
+	TSharedPtr< FUICommandInfo > Script_02;
+	TSharedPtr< FUICommandInfo > Script_03;
+	TSharedPtr< FUICommandInfo > Script_04;
+	TSharedPtr< FUICommandInfo > Script_05;
+	TSharedPtr< FUICommandInfo > Script_06;
+	TSharedPtr< FUICommandInfo > Script_07;
+	TSharedPtr< FUICommandInfo > Script_08;
+
+	TSharedPtr< FUICommandInfo > RefreshScripts;
+	TSharedPtr< FUICommandInfo > OpenScriptsDirectory;
 };

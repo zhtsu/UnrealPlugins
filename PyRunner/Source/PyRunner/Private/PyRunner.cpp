@@ -22,7 +22,7 @@ void FPyRunnerModule::StartupModule()
 	PluginCommands = MakeShareable(new FUICommandList);
 
 	PluginCommands->MapAction(
-		FPyRunnerCommands::Get().PluginAction,
+		FPyRunnerCommands::Get().Script_01,
 		FExecuteAction::CreateRaw(this, &FPyRunnerModule::PluginButtonClicked),
 		FCanExecuteAction());
 
@@ -63,17 +63,15 @@ void FPyRunnerModule::RegisterMenus()
 		UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
 		{
 			FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
-			Section.AddMenuEntryWithCommandList(FPyRunnerCommands::Get().PluginAction, PluginCommands);
+			Section.AddMenuEntryWithCommandList(FPyRunnerCommands::Get().Script_01, PluginCommands);
 		}
 	}
 
 	{
 		UToolMenu* ToolbarMenu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar");
 		{
-			FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("Game");
+			FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("Misc");
 			{
-				// FToolMenuEntry& PyRunnerEntry = Section.AddEntry(FToolMenuEntry::InitToolBarButton(FPyRunnerCommands::Get().PluginAction));
-
 				FToolMenuEntry& PyRunnerEntry = Section.AddEntry(FToolMenuEntry::InitComboButton(
 					PyRunnerTabName,
 					FUIAction(),
@@ -81,15 +79,31 @@ void FPyRunnerModule::RegisterMenus()
 					{
 						FMenuBuilder MenuBuilder(true, PluginCommands);
 				
-						MenuBuilder.BeginSection("A");
+						MenuBuilder.BeginSection("ScriptsSection", LOCTEXT("PyRunnerScripts", "Scripts"));
 						
-						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().PluginAction);
-						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().PluginAction);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_01);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_02);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_03);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_04);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_05);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_06);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_07);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().Script_08);
 						
 						MenuBuilder.EndSection();
 
+						MenuBuilder.BeginSection("OptionsSection", LOCTEXT("PyRunnerOptions", "Options"));
+
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().RefreshScripts);
+						MenuBuilder.AddMenuEntry(FPyRunnerCommands::Get().OpenScriptsDirectory);
+
+						MenuBuilder.EndSection();
+
 						return MenuBuilder.MakeWidget();
-					})
+					}),
+					LOCTEXT("PyRunnerMenuLabel", "PyRunner"),
+					LOCTEXT("PyRunnerMenuToolTip", "Execute python script"),
+					FSlateIcon(FPyRunnerStyle::GetStyleSetName(), "PyRunner.PluginAction")
 				));
 				
 				PyRunnerEntry.SetCommandList(PluginCommands);
